@@ -1,0 +1,131 @@
+/* Estilos Globais e Acessibilidade */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F4F6F9;
+    color: #1A1A1A;
+    font-size: 20px; /* Fonte base maior para facilitar a leitura */
+    line-height: 1.6;
+    padding-bottom: 40px;
+}
+
+/* Container Principal */
+.conteudo-principal {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Títulos */
+h1, h2 {
+    color: #0B2545;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 26px;
+    border-bottom: 4px solid #134074;
+    padding-bottom: 8px;
+    margin-top: 35px;
+}
+
+/* 1. Faixa de Início e Botão de Ajuda */
+.faixa-ajuda {
+    background-color: #D32F2F; /* Vermelho destacado de alerta */
+    color: #FFFFFF;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+}
+
+.faixa-ajuda h1 {
+    color: #FFFFFF;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.faixa-ajuda p {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.botao-emergencia {
+    display: inline-block;
+    background-color: #FFFFFF;
+    color: #D32F2F;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 18px 30px;
+    text-decoration: none;
+    border-radius: 10px;
+    border: 4px solid #8B0000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.2s;
+}
+
+.botao-emergencia:hover, .botao-emergencia:focus {
+    background-color: #FFEBEE;
+    outline: 3px solid #000000;
+}
+
+/* 2. Dicas Importantes */
+.grade-dicas {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cartao-dica {
+    background-color: #FFFFFF;
+    border-left: 10px solid #134074;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.cartao-dica h3 {
+    font-size: 22px;
+    color: #134074;
+    margin-bottom: 8px;
+}
+
+/* 3. Direitos na Internet */
+.caixa-texto {
+    background-color: #FFFFFF;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.caixa-texto p {
+    margin-bottom: 15px;
+}
+
+/* 4. Como saber se estou caindo em um golpe? */
+.lista-suspeitas {
+    list-style: none;
+    padding: 0;
+}
+
+.lista-suspeitas li {
+    background-color: #FFF3E0;
+    border: 2px solid #E65100;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.lista-suspeitas strong {
+    color: #E65100;
+    display: block;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
