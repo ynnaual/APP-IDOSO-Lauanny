@@ -1,131 +1,901 @@
-/* Estilos Globais e Acessibilidade */
+/* =========================================================
+   1. VARIÁVEIS DE ESTILO E TEMAS
+   ========================================================= */
+
+:root {
+    --bg-color: #f0f4f9;
+    --card-bg: #ffffff;
+
+    --primary-blue: #0f4c81;
+    --primary-hover: #0a3357;
+
+    --secondary-blue: #e8f1f5;
+
+    --text-color: #0f172a;
+    --text-muted: #334155;
+
+    --border-color: #94a3b8;
+
+    --shadow:
+        0 4px 8px rgba(0, 0, 0, 0.12);
+
+    --danger-color: #c53030;
+    --danger-hover: #9b2c2c;
+
+    --success-color: #15803d;
+
+    --font-scale: 1;
+}
+
+
+/* =========================================================
+   TEMA ALTO CONTRASTE
+   ========================================================= */
+
+body.high-contrast {
+
+    --bg-color: #000000;
+    --card-bg: #121212;
+
+    --primary-blue: #ffff00;
+    --primary-hover: #e6e600;
+
+    --secondary-blue: #1e1e1e;
+
+    --text-color: #ffffff;
+    --text-muted: #ffffff;
+
+    --border-color: #ffffff;
+
+    --shadow:
+        0 0 0 3px #ffffff;
+
+    --danger-color: #ff0000;
+    --danger-hover: #cc0000;
+
+    --success-color: #00ff00;
+}
+
+
+/* =========================================================
+   2. ESTILOS GERAIS
+   ========================================================= */
+
 * {
+
     box-sizing: border-box;
+
     margin: 0;
     padding: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    transition:
+        background-color 0.2s,
+        color 0.2s,
+        font-size 0.2s;
 }
+
+
+html {
+    font-size:
+        calc(18px * var(--font-scale));
+}
+
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #F4F6F9;
-    color: #1A1A1A;
-    font-size: 20px; /* Fonte base maior para facilitar a leitura */
-    line-height: 1.6;
+
+    background-color:
+        var(--bg-color);
+
+    color:
+        var(--text-color);
+
+    line-height: 1.7;
+
     padding-bottom: 40px;
+
+    font-weight: 500;
 }
 
-/* Container Principal */
-.conteudo-principal {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
 
-/* Títulos */
-h1, h2 {
-    color: #0B2545;
-    margin-bottom: 15px;
-}
+/* =========================================================
+   3. BARRA DE ACESSIBILIDADE
+   ========================================================= */
 
-h2 {
-    font-size: 26px;
-    border-bottom: 4px solid #134074;
-    padding-bottom: 8px;
-    margin-top: 35px;
-}
+.accessibility-bar {
 
-/* 1. Faixa de Início e Botão de Ajuda */
-.faixa-ajuda {
-    background-color: #D32F2F; /* Vermelho destacado de alerta */
-    color: #FFFFFF;
-    padding: 25px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 30px;
-}
+    background-color:
+        var(--card-bg);
 
-.faixa-ajuda h1 {
-    color: #FFFFFF;
-    font-size: 30px;
-    margin-bottom: 10px;
-}
+    border-bottom:
+        3px solid var(--border-color);
 
-.faixa-ajuda p {
-    font-size: 22px;
-    margin-bottom: 20px;
-}
+    padding:
+        12px 16px;
 
-.botao-emergencia {
-    display: inline-block;
-    background-color: #FFFFFF;
-    color: #D32F2F;
-    font-size: 24px;
-    font-weight: bold;
-    padding: 18px 30px;
-    text-decoration: none;
-    border-radius: 10px;
-    border: 4px solid #8B0000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.2s;
-}
-
-.botao-emergencia:hover, .botao-emergencia:focus {
-    background-color: #FFEBEE;
-    outline: 3px solid #000000;
-}
-
-/* 2. Dicas Importantes */
-.grade-dicas {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    box-shadow:
+        var(--shadow);
 }
 
-.cartao-dica {
-    background-color: #FFFFFF;
-    border-left: 10px solid #134074;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+.btn-acc {
+
+    background-color:
+        var(--secondary-blue);
+
+    color:
+        var(--text-color);
+
+    border:
+        3px solid var(--primary-blue);
+
+    padding:
+        12px 18px;
+
+    border-radius: 10px;
+
+    font-size: 1.05rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 52px;
 }
 
-.cartao-dica h3 {
-    font-size: 22px;
-    color: #134074;
-    margin-bottom: 8px;
+
+.btn-acc-stop {
+
+    background-color:
+        #fee2e2;
+
+    color:
+        var(--danger-color);
+
+    border:
+        3px solid var(--danger-color);
 }
 
-/* 3. Direitos na Internet */
-.caixa-texto {
-    background-color: #FFFFFF;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+.btn-acc-stop:hover,
+.btn-acc-stop:focus {
+
+    background-color:
+        var(--danger-color) !important;
+
+    color:
+        #ffffff !important;
 }
 
-.caixa-texto p {
-    margin-bottom: 15px;
+
+.high-contrast .btn-acc {
+
+    background-color: #000000;
+
+    color: #ffffff;
+
+    border-color: #ffff00;
 }
 
-/* 4. Como saber se estou caindo em um golpe? */
-.lista-suspeitas {
-    list-style: none;
+
+.high-contrast .btn-acc-stop {
+
+    background-color: #000000;
+
+    color: #ff0000;
+
+    border-color: #ff0000;
+}
+
+
+.btn-acc:hover,
+.btn-acc:focus {
+
+    outline:
+        3px solid var(--primary-blue);
+
+    background-color:
+        var(--primary-blue);
+
+    color:
+        #ffffff;
+}
+
+
+.high-contrast .btn-acc:hover {
+
+    color: #000000;
+
+    background-color: #ffff00;
+}
+
+
+/* =========================================================
+   4. CABEÇALHO
+   ========================================================= */
+
+header {
+
+    text-align: center;
+
+    padding:
+        28px 16px;
+
+    background-color:
+        var(--primary-blue);
+
+    color:
+        #ffffff;
+
+    border-bottom:
+        4px solid var(--border-color);
+}
+
+
+.high-contrast header {
+
+    background-color:
+        #121212;
+
+    color:
+        #ffff00;
+
+    border-bottom:
+        4px solid #ffff00;
+}
+
+
+header h1 {
+
+    font-size: 2.2rem;
+
+    margin-bottom: 6px;
+
+    letter-spacing: 0.5px;
+}
+
+
+header p {
+    font-size: 1.15rem;
+}
+
+
+/* =========================================================
+   5. CONTAINER E CARDS
+   ========================================================= */
+
+.container {
+
+    max-width: 800px;
+
+    margin:
+        24px auto;
+
+    padding:
+        0 16px;
+}
+
+
+.card {
+
+    background-color:
+        var(--card-bg);
+
+    border:
+        3px solid var(--border-color);
+
+    border-radius: 14px;
+
+    padding: 24px;
+
+    margin-bottom: 24px;
+
+    box-shadow:
+        var(--shadow);
+
+    position: relative;
+}
+
+
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom:
+        2px solid var(--border-color);
+
+    padding-bottom: 10px;
+
+    margin-bottom: 16px;
+
+    gap: 10px;
+}
+
+
+.card h2 {
+
+    font-size: 1.5rem;
+
+    color:
+        var(--primary-blue);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 0;
+
+    border: none;
+
     padding: 0;
 }
 
-.lista-suspeitas li {
-    background-color: #FFF3E0;
-    border: 2px solid #E65100;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 12px;
-    font-size: 20px;
+
+.high-contrast .card h2 {
+    color: #ffff00;
 }
 
-.lista-suspeitas strong {
-    color: #E65100;
+
+/* =========================================================
+   6. BOTÕES DE LEITURA
+   ========================================================= */
+
+.btn-read-card {
+
+    background-color:
+        var(--secondary-blue);
+
+    color:
+        var(--text-color);
+
+    border:
+        2px solid var(--primary-blue);
+
+    padding:
+        8px 14px;
+
+    border-radius: 8px;
+
+    font-size: 0.95rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    white-space: nowrap;
+}
+
+
+.high-contrast .btn-read-card {
+
+    background-color: #000000;
+
+    color: #ffffff;
+
+    border-color: #ffff00;
+}
+
+
+.btn-read-card:hover {
+
+    background-color:
+        var(--primary-blue);
+
+    color:
+        #ffffff;
+}
+
+
+.high-contrast .btn-read-card:hover {
+
+    background-color:
+        #ffff00;
+
+    color:
+        #000000;
+}
+
+
+/* =========================================================
+   7. BOTÃO DE EMERGÊNCIA
+   ========================================================= */
+
+.btn-emergency-popup {
+
+    width: 100%;
+
+    background-color:
+        var(--primary-blue);
+
+    color: #ffffff;
+
+    padding: 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-size: 1.25rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    box-shadow:
+        var(--shadow);
+
+    margin-bottom: 24px;
+}
+
+
+.high-contrast .btn-emergency-popup {
+
+    background-color: #ffff00;
+
+    color: #000000;
+}
+
+
+/* =========================================================
+   8. BOTÃO SOS
+   ========================================================= */
+
+.btn-sos {
+
+    width: 100%;
+
+    background-color:
+        var(--danger-color);
+
+    color: #ffffff;
+
+    font-size: 1.5rem;
+
+    font-weight: bold;
+
+    padding: 22px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 14px rgba(197, 48, 48, 0.4);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+}
+
+
+.high-contrast .btn-sos {
+
+    background-color: #ff0000;
+
+    color: #ffffff;
+
+    border:
+        4px solid #ffffff;
+}
+
+
+/* =========================================================
+   9. MODAL
+   ========================================================= */
+
+.modal-overlay {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color:
+        rgba(0, 0, 0, 0.85);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 1000;
+
+    padding: 16px;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+
+.modal-overlay.hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+.modal-content {
+
+    background-color:
+        var(--card-bg);
+
+    border:
+        5px solid var(--primary-blue);
+
+    border-radius: 18px;
+
+    width: 100%;
+
+    max-width: 540px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.6);
+
+    text-align: center;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+}
+
+
+.high-contrast .modal-content {
+
+    border-color: #ffff00;
+
+    background-color: #000000;
+}
+
+
+.modal-header {
+
+    font-size: 1.8rem;
+
+    color:
+        var(--danger-color);
+
+    margin-bottom: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+
+.high-contrast .modal-header {
+    color: #ff0000;
+}
+
+
+.modal-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 16px;
+}
+
+
+/* =========================================================
+   10. LISTA DE EMERGÊNCIA
+   ========================================================= */
+
+.emergency-list {
+
+    list-style: none;
+
+    margin: 20px 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+.emergency-item {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background-color:
+        var(--secondary-blue);
+
+    padding:
+        14px 18px;
+
+    border-radius: 10px;
+
+    border:
+        2px solid var(--border-color);
+}
+
+
+.high-contrast .emergency-item {
+
+    background-color: #121212;
+
+    border-color: #ffff00;
+}
+
+
+.emergency-info strong {
+
     display: block;
-    font-size: 22px;
-    margin-bottom: 5px;
+
+    font-size: 1.2rem;
+
+    color:
+        var(--text-color);
+
+    text-align: left;
+}
+
+
+.emergency-info span {
+
+    font-size: 1rem;
+
+    color:
+        var(--text-muted);
+
+    text-align: left;
+
+    display: block;
+}
+
+
+/* =========================================================
+   11. BOTÃO LIGAR
+   ========================================================= */
+
+.btn-call {
+
+    background-color:
+        var(--success-color);
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    padding:
+        12px 18px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 1.15rem;
+}
+
+
+.high-contrast .btn-call {
+
+    background-color: #00ff00;
+
+    color: #000000;
+}
+
+
+/* =========================================================
+   12. BOTÃO FECHAR MODAL
+   ========================================================= */
+
+.btn-close-modal {
+
+    background-color:
+        var(--primary-blue);
+
+    color: #ffffff;
+
+    border: none;
+
+    padding:
+        16px 28px;
+
+    font-size: 1.2rem;
+
+    font-weight: bold;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    width: 100%;
+
+    margin-top: 14px;
+}
+
+
+.high-contrast .btn-close-modal {
+
+    background-color: #ffffff;
+
+    color: #000000;
+}
+
+
+/* =========================================================
+   13. LISTAS DE INFORMAÇÕES
+   ========================================================= */
+
+.info-list {
+
+    list-style: none;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+.info-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 12px;
+
+    border-bottom:
+        2px solid var(--border-color);
+}
+
+
+.info-item i {
+
+    color:
+        var(--primary-blue);
+
+    font-size: 1.5rem;
+}
+
+
+.high-contrast .info-item i {
+    color: #ffff00;
+}
+
+
+.tips-list p {
+
+    margin-bottom: 12px;
+
+    font-size: 1.1rem;
+}
+
+
+/* =========================================================
+   14. RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .accessibility-bar {
+        gap: 8px;
+    }
+
+    .btn-acc {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .card-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .btn-read-card {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .emergency-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .emergency-info strong,
+    .emergency-info span {
+        text-align: center;
+    }
+
+    .btn-call {
+        justify-content: center;
+    }
+
+    .btn-sos {
+        font-size: 1.15rem;
+    }
+
 }

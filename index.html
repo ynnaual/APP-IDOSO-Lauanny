@@ -3,208 +3,596 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Segurança+ | Digital sem Segredos</title>
-    <style>
-        /* Estilos Globais e Acessibilidade */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    <title>SêniorSeg - Segurança e Cuidado</title>
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #F4F6F9;
-            color: #1A1A1A;
-            font-size: 20px; /* Fonte base maior para facilitar a leitura */
-            line-height: 1.6;
-            padding-bottom: 40px;
-        }
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        /* Container Principal */
-        .conteudo-principal {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Títulos */
-        h1, h2 {
-            color: #0B2545;
-            margin-bottom: 15px;
-        }
-
-        h2 {
-            font-size: 26px;
-            border-bottom: 4px solid #134074;
-            padding-bottom: 8px;
-            margin-top: 35px;
-        }
-
-        /* 1. Faixa de Início e Botão de Ajuda */
-        .faixa-ajuda {
-            background-color: #D32F2F; /* Vermelho destacado de alerta */
-            color: #FFFFFF;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            margin-bottom: 30px;
-        }
-
-        .faixa-ajuda h1 {
-            color: #FFFFFF;
-            font-size: 30px;
-            margin-bottom: 10px;
-        }
-
-        .faixa-ajuda p {
-            font-size: 22px;
-            margin-bottom: 20px;
-        }
-
-        .botao-emergencia {
-            display: inline-block;
-            background-color: #FFFFFF;
-            color: #D32F2F;
-            font-size: 24px;
-            font-weight: bold;
-            padding: 18px 30px;
-            text-decoration: none;
-            border-radius: 10px;
-            border: 4px solid #8B0000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: background-color 0.2s;
-        }
-
-        .botao-emergencia:hover, .botao-emergencia:focus {
-            background-color: #FFEBEE;
-            outline: 3px solid #000000;
-        }
-
-        /* 2. Dicas Importantes */
-        .grade-dicas {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .cartao-dica {
-            background-color: #FFFFFF;
-            border-left: 10px solid #134074;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .cartao-dica h3 {
-            font-size: 22px;
-            color: #134074;
-            margin-bottom: 8px;
-        }
-
-        /* 3. Direitos na Internet */
-        .caixa-texto {
-            background-color: #FFFFFF;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .caixa-texto p {
-            margin-bottom: 15px;
-        }
-
-        /* 4. Como saber se estou caindo em um golpe? */
-        .lista-suspeitas {
-            list-style: none;
-            padding: 0;
-        }
-
-        .lista-suspeitas li {
-            background-color: #FFF3E0;
-            border: 2px solid #E65100;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 12px;
-            font-size: 20px;
-        }
-
-        .lista-suspeitas strong {
-            color: #E65100;
-            display: block;
-            font-size: 22px;
-            margin-bottom: 5px;
-        }
-    </style>
+    <!-- CSS externo -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <div class="conteudo-principal">
+    <!-- BARRA DE ACESSIBILIDADE FIXA -->
+    <nav class="accessibility-bar" aria-label="Controles de Acessibilidade">
 
-        <header class="faixa-ajuda">
-            <h1>Segurança+</h1>
-            <p>Precisa de ajuda ou desconfia de uma mensagem?</p>
-            <a href="tel:190" class="botao-emergencia">
-                📞 PEDIR AJUDA AGORA
-            </a>
-        </header>
+        <button id="btn-tts"
+                class="btn-acc"
+                onclick="toggleFullSpeech()"
+                aria-label="Ouvir todo o conteúdo da página">
+            <i class="fa-solid fa-volume-high"></i>
+            <span id="tts-text">Ouvir Tudo</span>
+        </button>
 
-        <main>
-            <section>
-                <h2>Dicas Importantes</h2>
-                <div class="grade-dicas">
-                    <article class="cartao-dica">
-                        <h3>1. Pare e Confirme</h3>
-                        <p>Recebeu mensagem de um parente pedindo dinheiro urgente? Ligue para o número antigo dele antes de enviar qualquer valor.</p>
-                    </article>
+        <button class="btn-acc btn-acc-stop"
+                onclick="stopSpeech()"
+                aria-label="Parar leitura por voz">
+            <i class="fa-solid fa-circle-stop"></i>
+            <span>Parar Leitura</span>
+        </button>
 
-                    <article class="cartao-dica">
-                        <h3>2. Proteja suas Senhas</h3>
-                        <p>Nunca informe suas senhas para ninguém por telefone ou WhatsApp, nem mesmo para funcionários do banco.</p>
-                    </article>
+        <button class="btn-acc"
+                onclick="changeFontSize(0.1)"
+                aria-label="Aumentar tamanho do texto">
+            <i class="fa-solid fa-font"></i> A+
+        </button>
 
-                    <article class="cartao-dica">
-                        <h3>3. Cuidado com Links</h3>
-                        <p>Não clique em links de prêmios, sorteios ou recadastramento de dados enviados por mensagem.</p>
-                    </article>
-                </div>
-            </section>
+        <button class="btn-acc"
+                onclick="changeFontSize(-0.1)"
+                aria-label="Diminuir tamanho do texto">
+            <i class="fa-solid fa-font"></i> A-
+        </button>
 
-            <section>
-                <h2>Seus Direitos na Internet</h2>
-                <div class="caixa-texto">
-                    <p>Assim como no dia a dia, você tem direitos garantidos quando navega na internet:</p>
-                    <p><strong>Privacidade dos seus Dados:</strong> Empresas e aplicativos não podem compartilhar seus dados pessoais sem a sua autorização explicita (Lei Geral de Proteção de Dados - LGPD).</p>
-                    <p><strong>Atendimento Humano:</strong> Você tem o direito de ser atendido por uma pessoa de verdade nos canais oficiais de bancos e serviços públicos quando precisar tirar dúvidas.</p>
-                    <p><strong>Cancelamento Fácil:</strong> Serviços contratados pela internet podem ser cancelados de forma simples e sem burocracia.</p>
-                </div>
-            </section>
+        <button class="btn-acc"
+                onclick="toggleHighContrast()"
+                aria-label="Alternar Alto Contraste">
+            <i class="fa-solid fa-circle-half-stroke"></i>
+            <span>Alto Contraste</span>
+        </button>
 
-            <section>
-                <h2>Como saber se estou caindo em um golpe?</h2>
-                <ul class="lista-suspeitas">
-                    <li>
-                        <strong>🚨 Urgência Excessiva:</strong>
-                        A pessoa pressiona você para tomar uma atitude rápida, sem tempo para pensar ou conversar com a família.
-                    </li>
-                    <li>
-                        <strong>🚨 Pedido de Segredo:</strong>
-                        Pedem para você não contar a ninguém sobre a conversa, sobre o dinheiro ou sobre a oportunidade.
-                    </li>
-                    <li>
-                        <strong>🚨 Ofertas Fáceis Demais:</strong>
-                        Promessas de dinheiro fácil, prêmios de sorteios nos quais você não se inscreveu ou descontos absurdos.
-                    </li>
-                    <li>
-                        <strong>🚨 Pedido de Código por SMS:</strong>
-                        Se pedirem para você falar um código de números que chegou no seu celular, pare imediatamente! Esse código dá acesso às suas contas.
-                    </li>
-                </ul>
-            </section>
-        </main>
+    </nav>
+
+    <!-- CABEÇALHO -->
+    <header id="read-header">
+        <h1>
+            <i class="fa-solid fa-shield-heart"></i>
+            SêniorSeg
+        </h1>
+
+        <p>Sua segurança e bem-estar em primeiro lugar</p>
+    </header>
+
+    <main class="container">
+
+        <!-- BOTÃO DE EMERGÊNCIA -->
+        <button class="btn-emergency-popup"
+                onclick="openEmergencyModal()">
+
+            <i class="fa-solid fa-phone-flip"></i>
+
+            Ver Números de Emergência
+        </button>
+
+
+        <!-- AJUDA IMEDIATA -->
+        <section class="card" id="card-sos">
+
+            <div class="card-header">
+
+                <h2>
+                    <i class="fa-solid fa-bell"></i>
+                    Ajuda Imediata
+                </h2>
+
+                <button class="btn-read-card"
+                        onclick="speakText('Ajuda Imediata. Em caso de urgência, aperte o botão de pânico S O S para disparar um alerta.')">
+
+                    <i class="fa-solid fa-volume-low"></i>
+                    Ouvir
+
+                </button>
+
+            </div>
+
+            <p style="margin-bottom: 15px; font-size: 1.1rem;">
+                Em caso de urgência, aperte o botão abaixo
+                para disparar um alerta visual e de socorro.
+            </p>
+
+            <button class="btn-sos"
+                    onclick="triggerSOS()">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                BOTÃO DE PÂNICO (SOS)
+
+            </button>
+
+        </section>
+
+
+        <!-- CONTATOS FAMILIARES -->
+        <section class="card" id="card-contacts">
+
+            <div class="card-header">
+
+                <h2>
+                    <i class="fa-solid fa-users"></i>
+                    Contatos de Confiança
+                </h2>
+
+                <button class="btn-read-card"
+                        onclick="speakText('Contatos de Confiança. Filha Maria, telefone 11 98765-4321. Filho João, telefone 11 91234-5678.')">
+
+                    <i class="fa-solid fa-volume-low"></i>
+                    Ouvir
+
+                </button>
+
+            </div>
+
+            <ul class="info-list">
+
+                <li class="info-item">
+
+                    <i class="fa-solid fa-user-large"></i>
+
+                    <div>
+                        <strong>Filha (Maria)</strong>
+                        <p>Telefone: (11) 98765-4321</p>
+                    </div>
+
+                </li>
+
+                <li class="info-item">
+
+                    <i class="fa-solid fa-user-large"></i>
+
+                    <div>
+                        <strong>Filho (João)</strong>
+                        <p>Telefone: (11) 91234-5678</p>
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- LEMBRETES DE REMÉDIOS -->
+        <section class="card" id="card-meds">
+
+            <div class="card-header">
+
+                <h2>
+                    <i class="fa-solid fa-pills"></i>
+                    Lembretes do Dia
+                </h2>
+
+                <button class="btn-read-card"
+                        onclick="speakText('Lembretes do Dia. Às 08 horas, Remédio de Pressão: Tomar 1 comprimido com água. Às 12 horas, Vitamina D: Tomar após o almoço.')">
+
+                    <i class="fa-solid fa-volume-low"></i>
+                    Ouvir
+
+                </button>
+
+            </div>
+
+            <ul class="info-list">
+
+                <li class="info-item">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                    <div>
+                        <strong>08:00 - Remédio de Pressão</strong>
+                        <p>Tomar 1 comprimido com água.</p>
+                    </div>
+
+                </li>
+
+                <li class="info-item">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                    <div>
+                        <strong>12:00 - Vitamina D</strong>
+                        <p>Tomar após o almoço.</p>
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- DICAS DE SEGURANÇA -->
+        <section class="card tips-list" id="card-tips">
+
+            <div class="card-header">
+
+                <h2>
+                    <i class="fa-solid fa-lightbulb"></i>
+                    Dicas de Segurança
+                </h2>
+
+                <button class="btn-read-card"
+                        onclick="speakText('Dicas de Segurança. Mantenha os caminhos da casa sempre bem iluminados. Evite usar tapetes soltos no corredor e no banheiro. Deixe o telefone celular sempre carregado e perto de você.')">
+
+                    <i class="fa-solid fa-volume-low"></i>
+                    Ouvir
+
+                </button>
+
+            </div>
+
+            <p>• Mantenha os caminhos da casa sempre bem iluminados.</p>
+
+            <p>• Evite usar tapetes soltos no corredor e no banheiro.</p>
+
+            <p>• Deixe o telefone celular sempre carregado e perto de você.</p>
+
+        </section>
+
+    </main>
+
+
+    <!-- MODAL DE EMERGÊNCIA -->
+    <div id="emergency-modal"
+         class="modal-overlay"
+         role="dialog"
+         aria-labelledby="modal-title"
+         aria-modal="true">
+
+        <div class="modal-content" id="read-modal">
+
+            <div class="modal-header">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                <h2 id="modal-title">
+                    Números de Emergência
+                </h2>
+
+            </div>
+
+
+            <!-- BOTÃO DE LEITURA -->
+            <div class="modal-actions">
+
+                <button class="btn-read-card"
+                        onclick="speakText('Números de Emergência. SAMU 192 para Ambulância e Urgência. Bombeiros 193 para Resgate e Incêndio. Polícia Militar 190 para Segurança Pública. Central da Mulher 180.')">
+
+                    <i class="fa-solid fa-volume-low"></i>
+
+                    Ouvir estes números
+
+                </button>
+
+            </div>
+
+
+            <p style="font-size: 1.1rem; margin-bottom: 10px;">
+                Acesso rápido aos serviços de emergência:
+            </p>
+
+
+            <ul class="emergency-list">
+
+                <li class="emergency-item">
+
+                    <div class="emergency-info">
+
+                        <strong>192 - SAMU</strong>
+
+                        <span>
+                            Ambulância e Urgência
+                        </span>
+
+                    </div>
+
+                    <a href="tel:192" class="btn-call">
+                        <i class="fa-solid fa-phone"></i>
+                        Ligar
+                    </a>
+
+                </li>
+
+
+                <li class="emergency-item">
+
+                    <div class="emergency-info">
+
+                        <strong>193 - Bombeiros</strong>
+
+                        <span>
+                            Resgate e Incêndio
+                        </span>
+
+                    </div>
+
+                    <a href="tel:193" class="btn-call">
+                        <i class="fa-solid fa-phone"></i>
+                        Ligar
+                    </a>
+
+                </li>
+
+
+                <li class="emergency-item">
+
+                    <div class="emergency-info">
+
+                        <strong>190 - Polícia Militar</strong>
+
+                        <span>
+                            Segurança Pública
+                        </span>
+
+                    </div>
+
+                    <a href="tel:190" class="btn-call">
+                        <i class="fa-solid fa-phone"></i>
+                        Ligar
+                    </a>
+
+                </li>
+
+
+                <li class="emergency-item">
+
+                    <div class="emergency-info">
+
+                        <strong>180 - Central da Mulher</strong>
+
+                        <span>
+                            Atendimento à Mulher
+                        </span>
+
+                    </div>
+
+                    <a href="tel:180" class="btn-call">
+                        <i class="fa-solid fa-phone"></i>
+                        Ligar
+                    </a>
+
+                </li>
+
+            </ul>
+
+
+            <!-- FECHAR MODAL -->
+            <button class="btn-close-modal"
+                    onclick="closeEmergencyModal()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+                Sair / Fechar
+
+            </button>
+
+        </div>
 
     </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        /* =========================================================
+           CONTROLE DO MODAL
+           ========================================================= */
+
+        const modal = document.getElementById('emergency-modal');
+
+        function openEmergencyModal() {
+            modal.classList.remove('hidden');
+        }
+
+        function closeEmergencyModal() {
+            modal.classList.add('hidden');
+            stopSpeech();
+        }
+
+
+        /* =========================================================
+           CONTROLE DO TAMANHO DA FONTE
+           ========================================================= */
+
+        let currentScale = 1.0;
+
+        function changeFontSize(delta) {
+
+            currentScale += delta;
+
+            if (currentScale < 0.85) {
+                currentScale = 0.85;
+            }
+
+            if (currentScale > 1.6) {
+                currentScale = 1.6;
+            }
+
+            document.documentElement.style.setProperty(
+                '--font-scale',
+                currentScale
+            );
+        }
+
+
+        /* =========================================================
+           ALTO CONTRASTE
+           ========================================================= */
+
+        function toggleHighContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+
+
+        /* =========================================================
+           TEXT-TO-SPEECH
+           ========================================================= */
+
+        let isSpeaking = false;
+
+        const ttsBtnText =
+            document.getElementById('tts-text');
+
+
+        function stopSpeech() {
+
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+            }
+
+            isSpeaking = false;
+
+            if (ttsBtnText) {
+                ttsBtnText.innerText = "Ouvir Tudo";
+            }
+        }
+
+
+        function speakText(text) {
+
+            if ('speechSynthesis' in window) {
+
+                speechSynthesis.cancel();
+
+                const utterance =
+                    new SpeechSynthesisUtterance(text);
+
+                utterance.lang = 'pt-BR';
+
+                utterance.rate = 0.88;
+
+
+                utterance.onend = function() {
+
+                    isSpeaking = false;
+
+                    if (ttsBtnText) {
+                        ttsBtnText.innerText = "Ouvir Tudo";
+                    }
+
+                };
+
+
+                utterance.onerror = function() {
+
+                    isSpeaking = false;
+
+                    if (ttsBtnText) {
+                        ttsBtnText.innerText = "Ouvir Tudo";
+                    }
+
+                };
+
+
+                speechSynthesis.speak(utterance);
+
+                isSpeaking = true;
+
+                if (ttsBtnText) {
+                    ttsBtnText.innerText = "Parar Leitura";
+                }
+
+            } else {
+
+                alert(
+                    "Seu navegador não possui suporte para leitura por voz."
+                );
+
+            }
+        }
+
+
+        function toggleFullSpeech() {
+
+            if (speechSynthesis.speaking || isSpeaking) {
+
+                stopSpeech();
+
+            } else {
+
+                let textToRead = "";
+
+
+                if (!modal.classList.contains('hidden')) {
+
+                    textToRead =
+                        "Atenção: Números de emergência. " +
+                        "SAMU: 192, Ambulância e Urgência. " +
+                        "Bombeiros: 193, Resgate e Incêndio. " +
+                        "Polícia Militar: 190, Segurança Pública. " +
+                        "Central da Mulher: 180. " +
+                        "Clique no botão fechar para acessar a página principal.";
+
+                } else {
+
+                    textToRead =
+                        "Aplicativo SêniorSeg. " +
+                        "Sua segurança e bem-estar em primeiro lugar. " +
+
+                        "Seção Ajuda Imediata: " +
+                        "Em caso de urgência, aperte o Botão de Pânico S O S. " +
+
+                        "Seção Contatos de Confiança: " +
+                        "Filha Maria, telefone 11 98765-4321. " +
+                        "Filho João, telefone 11 91234-5678. " +
+
+                        "Seção Lembretes do Dia: " +
+                        "Às 08 horas, Remédio de Pressão: " +
+                        "Tomar 1 comprimido com água. " +
+                        "Às 12 horas, Vitamina D: " +
+                        "Tomar após o almoço. " +
+
+                        "Seção Dicas de Segurança: " +
+                        "Mantenha os caminhos da casa sempre bem iluminados. " +
+                        "Evite usar tapetes soltos no corredor e no banheiro. " +
+                        "Deixe o telefone celular sempre carregado e perto de você.";
+
+                }
+
+
+                speakText(textToRead);
+
+            }
+
+        }
+
+
+        /* =========================================================
+           BOTÃO SOS
+           ========================================================= */
+
+        function triggerSOS() {
+
+            alert(
+                "ALERTA DE EMERGÊNCIA DISPARADO!\n" +
+                "Um aviso foi enviado para seus contatos de confiança."
+            );
+
+        }
+
+
+        /* =========================================================
+           ABRIR MODAL AO CARREGAR
+           ========================================================= */
+
+        window.addEventListener(
+            'DOMContentLoaded',
+            () => {
+                openEmergencyModal();
+            }
+        );
+
+    </script>
 
 </body>
 </html>
